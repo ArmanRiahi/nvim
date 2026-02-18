@@ -1,0 +1,44 @@
+--Vim options
+
+vim.opt.number = true
+vim.opt.clipboard = "unnamedplus"
+vim.o.wrap = true
+vim.o.linebreak = true
+vim.o.mouse = "a"
+vim.o.autoindent = true
+vim.o.smartindent = true
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.expandtab = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.hlsearch = true
+vim.o.incsearch = true
+vim.o.fileencoding = "utf-8"
+vim.o.cmdheight = 1
+vim.o.signcolumn = "yes"
+vim.o.backspace = "indent,eol,start"
+vim.opt.laststatus = 3
+--vim.o.cmdheight = 0
+
+
+-- BufferLine options
+vim.opt.termguicolors = true
+vim.opt.showtabline = 2
+
+
+--Leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+vim.o.timeout = true
+vim.o.timeoutlen = 500
+
+-- window border
+vim.o.winborder = "rounded"
+
+vim.diagnostic.config({
+    virtual_text = true,
+    -- virtual_lines = true,
+    underline = true,
+})

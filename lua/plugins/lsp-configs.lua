@@ -7,6 +7,7 @@ local servers = {
 	"jsonls",
 	"html",
 	"ts_ls", -- Note: check if your version uses ts_ls or tsserver
+    "texlab",
 }
 
 return {

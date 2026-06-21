@@ -17,6 +17,7 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "L3MON4D3/LuaSnip",
+      "micangl/cmp-vimtex",
     },
 
     config = function()
@@ -82,9 +83,10 @@ return {
 
         sources = cmp.config.sources({
           { name = "nvim_lsp", priority = 1000 },
-          { name = "luasnip",  priority = 750 },
-          { name = "buffer",   priority = 500 },
-          { name = "path",     priority = 250 },
+          { name = "luasnip",  priority = 800 },
+          { name = "vimtex",   priority = 600 },
+          { name = "buffer",   priority = 400 },
+          { name = "path",     priority = 200 },
         }),
         -- Add icons/labels to the completion menu
         formatting = {
@@ -93,6 +95,7 @@ return {
             local menu_icon = {
               nvim_lsp = "[LSP]",
               luasnip  = "[Snip]",
+              vimtex   = "[VTex]",
               buffer   = "[Buf]",
               path     = "[Path]",
             }

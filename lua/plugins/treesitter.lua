@@ -16,7 +16,6 @@ return {
 				"java", "typescript", "html", "css", "json", "tsx", 
 				"gitignore", "go", "latex", "bash",
 			},
-			
 			-- Sync install for better stability
 			sync_install = false,
 			auto_install = true,

@@ -11,17 +11,17 @@ return {
 		configs.setup({
 			-- Ensure all the languages you use are here
 			ensure_installed = {
-				"c", "cpp", "lua", "rust", "vim", "vimdoc", "query", 
-				"markdown", "markdown_inline", "javascript", "python", 
-				"java", "typescript", "html", "css", "json", "tsx", 
+				"c", "cpp", "lua", "rust", "vim", "vimdoc", "query",
+				"markdown", "markdown_inline", "javascript", "python",
+				"java", "typescript", "html", "css", "json", "tsx",
 				"gitignore", "go", "latex", "bash",
 			},
 			-- Sync install for better stability
 			sync_install = false,
 			auto_install = true,
 
-			highlight = { 
-				enable = true, 
+			highlight = {
+				enable = true,
 				-- Optional: disable slow treesitter highlight for large files
 				disable = function(lang, buf)
 					local max_filesize = 100 * 1024 -- 100 KB
@@ -31,7 +31,7 @@ return {
 					end
 				end,
 			},
-			
+
 			indent = { enable = true },
 			autotag = { enable = true },
 

@@ -7,6 +7,7 @@ local servers = {
 	"jsonls",
 	"html",
 	"ts_ls", -- Note: check if your version uses ts_ls or tsserver
+    "jdtls",
     "texlab",
 }
 
@@ -36,6 +37,17 @@ return {
 		},
 	},
 
+-- mason nvim dap utilizes mason to automatically ensure debug adapters you want installed are installed, mason-lspconfig will not automatically install debug adapters for us
+    {
+        "jay-babu/mason-nvim-dap.nvim",
+        config = function()
+            -- ensure the java debug adapter is installed
+            require("mason-nvim-dap").setup({
+                ensure_installed = { "java-debug-adapter", "java-test" }
+            })
+        end
+    },
+
 	-- Core LSP config
 	{
 		"neovim/nvim-lspconfig",
@@ -43,7 +55,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 		},
         opts = {
-            inlay_hints = {enable = false},
+            inlay_hints = {enable = true},
         },
 		config = function()
 			local lspconfig = require("lspconfig")
@@ -77,11 +89,20 @@ return {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
 					local opts = { buffer = ev.buf }
-					vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, { desc = "Hover", buffer = ev.buf })
-					vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, { desc = "Definition", buffer = ev.buf })
-					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Action", buffer = ev.buf })
-					vim.keymap.set("n", "<leader>cR", vim.lsp.buf.rename, { desc = "Rename", buffer = ev.buf })
-					vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "Type_definition", buffer = ev.buf })
+                    -- Set vim motion for <Space> + c + h to show code documentation about the code the cursor is currently over if available
+                    vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, { desc = "[C]ode [H]over Documentation", buffer = ev.buf })
+                    -- Set vim motion for <Space> + c + d to go where the code/variable under the cursor was defined
+                    vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, { desc = "[C]ode Goto [D]efinition", buffer = ev.buf })
+                    -- Set vim motion for <Space> + c + a for display code action suggestions for code diagnostics in both normal and visual mode
+                    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ctions", buffer = ev.buf })
+                    -- Set vim motion for <Space> + c + r to display references to the code under the cursor
+                    vim.keymap.set("n", "<leader>cr", require("telescope.builtin").lsp_references, { desc = "[C]ode Goto [R]eferences", buffer = ev.buf })
+                    -- Set vim motion for <Space> + c + i to display implementations to the code under the cursor
+                    vim.keymap.set("n", "<leader>ci", require("telescope.builtin").lsp_implementations, { desc = "[C]ode Goto [I]mplementations", buffer = ev.buf })
+                    -- Set a vim motion for <Space> + c + <Shift>R to smartly rename the code under the cursor
+                    vim.keymap.set("n", "<leader>cR", vim.lsp.buf.rename, { desc = "[C]ode [R]ename", buffer = ev.buf })
+                    -- Set a vim motion for <Space> + c + <Shift>D to go to where the code/object was declared in the project (class file)
+                    vim.keymap.set("n", "<leader>cD", vim.lsp.buf.declaration, { desc = "[C]ode Goto [D]eclaration", buffer = ev.buf })
 
 					-- ... add your telescope mappings here similarly
 				end,

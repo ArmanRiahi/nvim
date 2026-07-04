@@ -1,4 +1,10 @@
---Vim keymaps
+-- My keymaps
+
+--Leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+vim.o.timeout = true
+vim.o.timeoutlen = 500
 
 -- Move between windows (normal mode)
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left pane" })
@@ -58,7 +64,7 @@ vim.keymap.set("n", "<leader>t", function()
 end, { noremap = true, silent = true, desc = "Open terminal on the right" })
 
 -- Remove search highlights after searching
-vim.keymap.set("n", "<leader>rsh", "<cmd>nohlsearch<CR>", { desc = "Remove searching highlights" })
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Remove searching highlights" })
 
 -- Exit vim's terminal mode
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })

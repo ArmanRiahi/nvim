@@ -1,38 +1,55 @@
---Vim options
+-- Left column and similar settings
+vim.opt.number = true -- display line numbers
+-- vim.opt.relativenumber = true -- display relative line numbers
+vim.opt.numberwidth = 2 -- set width of line number column
+vim.opt.signcolumn = "yes" -- always show sign column
+vim.opt.wrap = true -- display lines as single line
+vim.opt.scrolloff = 10 -- number of lines to keep above/below cursor
+vim.opt.sidescrolloff = 10 -- number of columns to keep to the left/right of cursor
 
-vim.opt.number = true
-vim.opt.clipboard = "unnamedplus"
-vim.o.wrap = true
-vim.o.linebreak = true
-vim.o.mouse = "a"
+-- Tab spacing/behavior
+vim.opt.expandtab = true -- convert tabs to spaces
+vim.opt.shiftwidth = 4 -- number of spaces inserted for each indentation level
+vim.opt.tabstop = 4 -- number of spaces inserted for tab character
+vim.opt.softtabstop = 4 -- number of spaces inserted for <Tab> key
+vim.opt.smartindent = true -- enable smart indentation
+vim.opt.breakindent = false -- enable line breaking indentation
+
+-- General Behaviors
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.backup = false -- disable backup file creation
+vim.opt.clipboard = "unnamedplus" -- enable system clipboard access
+vim.opt.conceallevel = 0 -- show concealed characters in markdown files
+vim.opt.fileencoding = "utf-8" -- set file encoding to UTF-8
+vim.opt.mouse = "a" -- enable mouse support
+vim.opt.showmode = false -- hide mode display
+vim.opt.splitbelow = true -- force horizontal splits below current window
+vim.opt.splitright = true -- force vertical splits right of current window
+vim.opt.termguicolors = true -- enable term GUI colors
+vim.opt.timeoutlen = 1000 -- set timeout for mapped sequences
+vim.opt.undofile = true -- enable persistent undo
+vim.opt.updatetime = 100 -- set faster completion
+vim.opt.writebackup = false -- prevent editing of files being edited elsewhere
+vim.opt.cursorline = true -- highlight current line
+-- vim.opt.swapfile = false -- creates a swapfile
+
+-- Searching Behaviors
+vim.opt.hlsearch = true -- highlight all matches in search
+vim.opt.ignorecase = true -- ignore case in search
+vim.opt.smartcase = true -- match case if explicitly stated
+
+-- Other options
+vim.o.linebreak = false
 vim.o.autoindent = true
-vim.o.smartindent = true
-vim.o.shiftwidth = 4
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.expandtab = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.hlsearch = true
 vim.o.incsearch = true
-vim.o.fileencoding = "utf-8"
 vim.o.cmdheight = 1
-vim.o.signcolumn = "yes"
 vim.o.backspace = "indent,eol,start"
 vim.opt.laststatus = 3
---vim.o.cmdheight = 0
-
 
 -- BufferLine options
 vim.opt.termguicolors = true
 vim.opt.showtabline = 2
-
-
---Leader key
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-vim.o.timeout = true
-vim.o.timeoutlen = 500
 
 -- window border
 vim.o.winborder = "rounded"
